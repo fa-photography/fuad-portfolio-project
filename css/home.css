@@ -1,0 +1,430 @@
+/* ========================================
+   1. Hero Section
+======================================== */
+
+.hero {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  align-items: end;
+  overflow: hidden;
+  padding: 10.5rem 0 5.5rem;
+  background-color: var(--color-dark-charcoal);
+  color: var(--color-warm-white);
+}
+
+.hero__visual {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgb(16 19 15 / 90%) 0%,
+      rgb(16 19 15 / 62%) 46%,
+      rgb(16 19 15 / 22%) 75%
+    ),
+    linear-gradient(0deg, rgb(16 19 15 / 70%) 0%, transparent 56%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.hero__content > * {
+  max-width: 780px;
+}
+
+.hero h1 {
+  max-width: 780px;
+  margin: 0.85rem 0 1.35rem;
+  color: var(--color-warm-white);
+  font-size: clamp(3.15rem, 5.65vw, 5.9rem);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: 0.012em;
+  text-wrap: balance;
+}
+
+.hero__description {
+  max-width: 660px;
+  margin-bottom: 0;
+  color: var(--color-light-75);
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+}
+
+.hero__scroll-cue {
+  position: absolute;
+  right: var(--container-gutter);
+  bottom: 2.25rem;
+  z-index: var(--z-base);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--color-light-75);
+  font-size: 0.67rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+.hero__scroll-cue span {
+  width: 1px;
+  height: 54px;
+  background-color: var(--color-light-40);
+}
+
+/* ========================================
+   2. Hero Responsive
+======================================== */
+
+@media (max-width: 900px) {
+  .hero h1 {
+    max-width: 700px;
+  }
+
+  .hero__description {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 92vh;
+    min-height: 92svh;
+    padding: 8.5rem 0 4rem;
+  }
+
+  .hero__overlay {
+    background: linear-gradient(
+      0deg,
+      rgb(16 19 15 / 90%) 0%,
+      rgb(16 19 15 / 42%) 74%
+    );
+  }
+
+  .hero h1 {
+    max-width: 620px;
+    font-size: clamp(3rem, 12.4vw, 4.35rem);
+    line-height: 0.97;
+    letter-spacing: 0.01em;
+  }
+
+  .hero__description {
+    font-size: 0.98rem;
+  }
+
+  .hero__scroll-cue {
+    display: none;
+  }
+}
+
+/* ========================================
+   3. About Photographer
+======================================== */
+
+.about {
+  overflow: hidden;
+}
+
+.about__layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+.about__visual {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+}
+
+.about__visual::before {
+  position: absolute;
+  inset: 1.15rem -1.15rem -1.15rem 1.15rem;
+  z-index: -1;
+  border: var(--border-dark);
+  content: "";
+}
+
+.about__visual img {
+  min-height: 620px;
+  object-fit: cover;
+  box-shadow: var(--shadow-medium);
+}
+
+.about__visual figcaption {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  max-width: calc(100% - 2.5rem);
+  padding: 0.55rem 0.75rem;
+  background-color: rgb(16 19 15 / 76%);
+  color: var(--color-warm-white);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.about__content {
+  max-width: 570px;
+}
+
+.about__content h2 {
+  margin-bottom: var(--space-5);
+  text-wrap: balance;
+}
+
+.about__content .lead {
+  margin-bottom: var(--space-6);
+}
+
+.about__content > p:not(.eyebrow):not(.lead) {
+  color: var(--color-dark-75);
+}
+
+/* ========================================
+   4. About Responsive
+======================================== */
+
+@media (max-width: 900px) {
+  .about__layout {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .about__visual img {
+    min-height: 520px;
+  }
+
+  .about__content {
+    max-width: 680px;
+  }
+}
+
+@media (max-width: 640px) {
+  .about__layout {
+    gap: 3rem;
+  }
+
+  .about__visual img {
+    min-height: 430px;
+  }
+
+  .about__visual::before {
+    inset: 0.75rem -0.75rem -0.75rem 0.75rem;
+  }
+
+  .about__visual figcaption {
+    bottom: 0.9rem;
+    left: 0.9rem;
+    max-width: calc(100% - 1.8rem);
+  }
+}
+
+/* ========================================
+   5. Portfolio Highlights
+======================================== */
+
+.portfolio-highlights {
+  overflow: hidden;
+}
+
+.portfolio-highlights .eyebrow {
+  color: var(--color-earth-brown);
+}
+
+/* ========================================
+   6. Event Experience
+======================================== */
+
+.experience {
+  overflow: hidden;
+  background-color: var(--color-soft-black);
+}
+
+.experience .section-heading {
+  margin-bottom: clamp(2.75rem, 5vw, 4.5rem);
+}
+
+/* ========================================
+   7. Photography Services
+======================================== */
+
+.services {
+  overflow: hidden;
+  background-color: var(--color-warm-white);
+}
+
+.services .section-heading {
+  margin-bottom: clamp(2.75rem, 5vw, 4.5rem);
+}
+
+.services__note {
+  max-width: 680px;
+  margin: var(--space-8) 0 0;
+  color: var(--color-dark-60);
+  font-size: var(--font-size-small);
+}
+
+/* ========================================
+   8. Selected Works / Gallery
+======================================== */
+
+.gallery {
+  overflow: hidden;
+  background-color: var(--color-soft-black);
+}
+
+.gallery .section-heading {
+  margin-bottom: clamp(2.75rem, 5vw, 4.5rem);
+}
+
+/* ========================================
+   9. Contact / CTA
+======================================== */
+
+.contact {
+  position: relative;
+  display: grid;
+  min-height: 82vh;
+  min-height: 82svh;
+  align-items: center;
+  overflow: hidden;
+  padding-block: var(--section-space);
+  background-color: var(--color-dark-charcoal);
+  color: var(--color-warm-white);
+}
+
+.contact__visual {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.contact__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgb(16 19 15 / 94%) 0%,
+      rgb(16 19 15 / 72%) 52%,
+      rgb(16 19 15 / 32%) 100%
+    ),
+    linear-gradient(0deg, rgb(16 19 15 / 68%) 0%, transparent 68%);
+}
+
+.contact__content {
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.contact__content h2 {
+  max-width: 760px;
+  margin: var(--space-3) 0 var(--space-5);
+  color: var(--color-warm-white);
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+.contact__description {
+  max-width: 680px;
+  margin-bottom: 0;
+  color: var(--color-light-75);
+  font-size: clamp(1rem, 1.7vw, 1.18rem);
+}
+
+.contact__actions {
+  margin-top: var(--space-8);
+}
+
+.contact__information {
+  display: flex;
+  max-width: 820px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-top: clamp(3rem, 7vw, 6rem);
+  padding-top: var(--space-5);
+  border-top: var(--border-light);
+}
+
+.contact__information p {
+  max-width: 500px;
+  margin: 0;
+  color: var(--color-light-60);
+  font-size: var(--font-size-small);
+}
+
+.contact__information .contact__placeholder-note {
+  max-width: 280px;
+  color: var(--color-warm-gold);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   10. Contact Responsive
+======================================== */
+
+@media (max-width: 900px) {
+  .contact {
+    min-height: 76vh;
+    min-height: 76svh;
+  }
+
+  .contact__information {
+    display: block;
+  }
+
+  .contact__information .contact__placeholder-note {
+    max-width: 520px;
+    margin-top: var(--space-4);
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact {
+    min-height: auto;
+    padding-block: 6rem;
+  }
+
+  .contact__overlay {
+    background: linear-gradient(
+      0deg,
+      rgb(16 19 15 / 95%) 0%,
+      rgb(16 19 15 / 62%) 100%
+    );
+  }
+
+  .contact__content h2 {
+    font-size: clamp(3rem, 13vw, 4.5rem);
+  }
+
+  .contact__information {
+    margin-top: var(--space-16);
+  }
+}
