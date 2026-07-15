@@ -59,28 +59,7 @@
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: -0.025em;
-}
-
-.brand__mark {
-  display: grid;
-  width: 38px;
-  height: 38px;
-  flex-shrink: 0;
-  place-items: center;
-  border: 1px solid var(--color-light-60);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.11em;
-  transition:
-    border-color var(--transition-fast),
-    background-color var(--transition-fast),
-    color var(--transition-fast);
-}
-
-.brand:hover .brand__mark {
-  border-color: var(--color-warm-gold);
-  background-color: var(--color-warm-gold);
-  color: var(--color-dark-charcoal);
+  transition: color var(--transition-fast);
 }
 
 .brand__name {
@@ -254,12 +233,6 @@
   .brand {
     gap: 0.65rem;
     font-size: 0.88rem;
-  }
-
-  .brand__mark {
-    width: 34px;
-    height: 34px;
-    font-size: 0.65rem;
   }
 }
 
@@ -464,6 +437,18 @@
 /* Hover hanya diterapkan pada perangkat yang mendukung cursor. */
 
 @media (hover: hover) {
+  .brand:hover {
+    color: var(--color-warm-gold);
+  }
+
+  .brand:focus-visible {
+    color: var(--color-warm-gold);
+  }
+
+  .brand:active {
+    color: var(--color-warm-gold);
+  }
+
   .photo-card:hover .photo-card__media img {
     filter: saturate(1.08) contrast(1.03);
     transform: scale(1.045);
@@ -1004,30 +989,7 @@ body.lightbox-open {
 }
 
 /* ========================================
-   24. Disabled Placeholder Links
-======================================== */
-
-.button[aria-disabled="true"] {
-  cursor: not-allowed;
-  opacity: 0.68;
-  pointer-events: none;
-}
-
-.button[aria-disabled="true"]:hover {
-  transform: none;
-}
-
-.button--solid:hover {
-  background-color: var(--color-warm-white);
-}
-
-.button--outline:hover {
-  border-color: var(--color-warm-white);
-  background-color: var(--color-light-12);
-}
-
-/* ========================================
-   25. Site Footer
+   24. Site Footer
 ======================================== */
 
 .site-footer {
@@ -1061,10 +1023,10 @@ body.lightbox-open {
   transition: color var(--transition-fast);
 }
 
-.footer__brand:hover {
+.footer__brand:hover,
+.footer__brand:focus-visible {
   color: var(--color-warm-gold);
 }
-
 .footer__identity p {
   max-width: 480px;
   margin: 0;
@@ -1092,6 +1054,7 @@ body.lightbox-open {
 
 .footer__navigation a,
 .footer__contact a {
+  display: inline-block;
   color: var(--color-light-60);
   font-size: var(--font-size-small);
   transition:
@@ -1099,21 +1062,24 @@ body.lightbox-open {
     transform var(--transition-fast);
 }
 
-.footer__navigation a:hover,
-.footer__contact a:not([aria-disabled="false"]):hover {
-  color: var(--color-warm-white);
+@media (hover: hover) {
+  .footer__navigation a:hover,
+  .footer__contact a:hover {
+    color: var(--color-warm-white);
+    transform: translateX(3px);
+  }
 }
 
-.footer__navigation a:hover {
-  display: inline-block;
+.footer__navigation a:focus-visible,
+.footer__contact a:focus-visible {
+  color: var(--color-warm-white);
   transform: translateX(3px);
 }
 
-.footer__contact a[aria-disabled="false"] {
-  color: var(--color-light-60);
-  cursor: not-allowed;
-  opacity: 1;
-  pointer-events: none;
+.footer__navigation a:active,
+.footer__contact a:active {
+  color: var(--color-warm-white);
+  transform: translateX(3px);
 }
 
 .footer__bottom {
@@ -1127,12 +1093,12 @@ body.lightbox-open {
 
 .footer__bottom p {
   margin: 0;
-  color: var(--color-light-40);
+  color: var(--color-light-60);
   font-size: 0.72rem;
 }
 
 /* ========================================
-   26. Footer Responsive
+   25. Footer Responsive
 ======================================== */
 
 @media (max-width: 900px) {

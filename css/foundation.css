@@ -157,7 +157,8 @@ select {
 
 button,
 a {
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgb(208 167 104 / 18%);
+  touch-action: manipulation;
 }
 
 button {
@@ -292,7 +293,7 @@ section[id] {
 }
 
 /* ========================================
-   6. Base Header and Footer
+   6. Base Header
 ======================================== */
 
 .site-header {
@@ -302,57 +303,8 @@ section[id] {
   color: var(--color-warm-white);
 }
 
-.site-navigation {
-  min-height: var(--header-height-desktop);
-}
-
-.site-footer {
-  padding-block: var(--space-8);
-  background-color: var(--color-deep-black);
-  color: var(--color-warm-white);
-}
-
-.site-footer p {
-  margin-bottom: 0;
-  color: var(--color-light-60);
-  font-size: var(--font-size-small);
-}
-
 /* ========================================
-   7. Temporary Section Placeholders
-======================================== */
-
-.section-placeholder {
-  display: grid;
-  min-height: 60vh;
-  align-items: center;
-  border-bottom: var(--border-light);
-  background-color: var(--color-dark-charcoal);
-  color: var(--color-warm-white);
-}
-
-.section-placeholder h1,
-.section-placeholder h2 {
-  margin-bottom: var(--space-5);
-}
-
-.section-placeholder p {
-  max-width: 680px;
-  margin-bottom: 0;
-  color: var(--color-light-60);
-}
-
-.section-placeholder__label {
-  margin-bottom: var(--space-2);
-  color: var(--color-warm-gold);
-  font-size: var(--font-size-label);
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-/* ========================================
-   8. Dialog Base State
+   7. Dialog Base State
 ======================================== */
 
 .lightbox:not([open]) {
@@ -360,7 +312,7 @@ section[id] {
 }
 
 /* ========================================
-   9. Responsive Foundation
+   8. Responsive Foundation
 ======================================== */
 
 @media (max-width: 900px) {
@@ -374,18 +326,13 @@ section[id] {
     --section-space: 4.75rem;
   }
 
-  .site-header,
-  .site-navigation {
+  .site-header {
     min-height: var(--header-height-mobile);
-  }
-
-  .section-placeholder {
-    min-height: 52vh;
   }
 }
 
 /* ========================================
-   10. Reduced Motion
+   9. Reduced Motion
 ======================================== */
 
 @media (prefers-reduced-motion: reduce) {

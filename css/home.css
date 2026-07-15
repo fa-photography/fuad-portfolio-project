@@ -359,11 +359,7 @@
 }
 
 .contact__information {
-  display: flex;
   max-width: 820px;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-8);
   margin-top: clamp(3rem, 7vw, 6rem);
   padding-top: var(--space-5);
   border-top: var(--border-light);
@@ -376,15 +372,6 @@
   font-size: var(--font-size-small);
 }
 
-.contact__information .contact__placeholder-note {
-  max-width: 280px;
-  color: var(--color-warm-gold);
-  font-size: 0.68rem;
-  letter-spacing: 0.07em;
-  text-align: right;
-  text-transform: uppercase;
-}
-
 /* ========================================
    10. Contact Responsive
 ======================================== */
@@ -393,16 +380,6 @@
   .contact {
     min-height: 76vh;
     min-height: 76svh;
-  }
-
-  .contact__information {
-    display: block;
-  }
-
-  .contact__information .contact__placeholder-note {
-    max-width: 520px;
-    margin-top: var(--space-4);
-    text-align: left;
   }
 }
 
