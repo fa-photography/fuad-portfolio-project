@@ -1,0 +1,50 @@
+/* ========================================
+   1. Scroll Reveal Animation
+======================================== */
+
+.reveal-target {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 700ms ease,
+    transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-target[data-reveal="scale"] {
+  transform: scale(0.97);
+}
+
+.reveal-target.is-revealed {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* ========================================
+   2. Mobile Adjustment
+======================================== */
+
+@media (max-width: 640px) {
+  .reveal-target {
+    transform: translate3d(0, 16px, 0);
+  }
+
+  .reveal-target[data-reveal="scale"] {
+    transform: scale(0.98);
+  }
+}
+
+/* ========================================
+   3. Reduced Motion
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-target,
+  .reveal-target[data-reveal="scale"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

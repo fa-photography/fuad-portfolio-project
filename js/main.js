@@ -1,5 +1,6 @@
 import { initializeNavigation } from "./modules/navigation.js";
 import { initializeLightbox } from "./modules/lightbox.js";
+import { initializeScrollReveal } from "./modules/scroll-reveal.js";
 
 /**
  * Memperbarui semua elemen yang membutuhkan tahun berjalan.
@@ -22,6 +23,7 @@ function updateCurrentYear() {
 function initializeProject() {
   initializeNavigation();
   initializeLightbox();
+  initializeScrollReveal();
   updateCurrentYear();
 
   console.info("Fuad Portfolio Project initialized successfully.");

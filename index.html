@@ -14,11 +14,7 @@
 
     <title>Fuad Abdullah — Outdoor & Adventure Photographer</title>
 
-    <link
-      rel="icon"
-      href="assets/icons/favicon.svg"
-      type="image/svg+xml"
-    />
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,6 +30,7 @@
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/motion.css" />
   </head>
 
   <body>
@@ -89,7 +86,7 @@
       >
         <img
           class="hero__visual"
-          src="assets/images/hero/download.jpg"
+          src="assets/images/hero/hero.png"
           width="1600"
           height="1000"
           alt="Simulated cinematic outdoor journey across mountain scenery"
@@ -135,7 +132,7 @@
         aria-labelledby="about-title"
       >
         <div class="container about__layout">
-          <figure class="about__visual">
+          <figure class="about__visual" data-reveal="scale">
             <img
               src="assets/images/about/profile.jpeg"
               width="1600"
@@ -148,7 +145,7 @@
             <figcaption>Behind the scenes · Simulated visual asset</figcaption>
           </figure>
 
-          <div class="about__content">
+          <div class="about__content" data-reveal="fade-up">
             <p class="eyebrow">Behind the Lens</p>
 
             <h2 id="about-title">About Fuad Abdullah</h2>
@@ -186,7 +183,7 @@
         aria-labelledby="portfolio-title"
       >
         <div class="container">
-          <div class="section-heading">
+          <div class="section-heading" data-reveal="fade-up">
             <div>
               <p class="eyebrow">Selected Works</p>
 
@@ -200,7 +197,7 @@
             </p>
           </div>
 
-          <div class="photo-grid">
+          <div class="photo-grid" data-reveal-group="fade-up">
             <article class="photo-card">
               <figure class="photo-card__media">
                 <img
@@ -310,7 +307,7 @@
             </article>
           </div>
 
-          <div class="section-action">
+          <div class="section-action" data-reveal="fade-up">
             <a class="text-link" href="#gallery">
               View More Works
               <span aria-hidden="true">↗</span>
@@ -326,7 +323,7 @@
         aria-labelledby="experience-title"
       >
         <div class="container">
-          <div class="section-heading">
+          <div class="section-heading" data-reveal="fade-up">
             <div>
               <p class="eyebrow">Field Experience</p>
 
@@ -339,7 +336,7 @@
             </p>
           </div>
 
-          <ol class="experience-list">
+          <ol class="experience-list" data-reveal-group="fade-up">
             <li class="experience-item">
               <span class="experience-item__number" aria-hidden="true">
                 01
@@ -430,7 +427,7 @@
         aria-labelledby="services-title"
       >
         <div class="container">
-          <div class="section-heading">
+          <div class="section-heading" data-reveal="fade-up">
             <div>
               <p class="eyebrow">Services</p>
 
@@ -444,7 +441,7 @@
             </p>
           </div>
 
-          <ol class="service-grid">
+          <ol class="service-grid" data-reveal-group="fade-up">
             <li class="service-card">
               <span class="service-card__number" aria-hidden="true"> 01 </span>
 
@@ -518,7 +515,7 @@
             </li>
           </ol>
 
-          <p class="services__note">
+          <p class="services__note" data-reveal="fade-up">
             Project details, location, duration, and documentation needs can be
             discussed directly.
           </p>
@@ -532,7 +529,7 @@
         aria-labelledby="gallery-title"
       >
         <div class="container">
-          <div class="section-heading">
+          <div class="section-heading" data-reveal="fade-up">
             <div>
               <p class="eyebrow">Gallery</p>
 
@@ -546,7 +543,7 @@
             </p>
           </div>
 
-          <ul class="gallery-grid" role="list">
+          <ul class="gallery-grid" role="list" data-reveal-group="fade-up">
             <li class="gallery-grid__item gallery-grid__item--tall">
               <button
                 class="gallery-item"
@@ -905,7 +902,7 @@
 
         <div class="contact__overlay" aria-hidden="true"></div>
 
-        <div class="container contact__content">
+        <div class="container contact__content" data-reveal="fade-up">
           <p class="eyebrow">Let&apos;s Work Together</p>
 
           <h2 id="contact-title">Let&apos;s Create a Story Together</h2>
@@ -942,7 +939,7 @@
     <!-- Site Footer -->
     <footer id="site-footer" class="site-footer">
       <div class="container footer">
-        <div class="footer__top">
+        <div class="footer__top" data-reveal-group="fade-up">
           <div class="footer__identity">
             <a
               class="footer__brand"
