@@ -5,7 +5,7 @@ import { getPortfolioCollection } from "../data/portfolio-collections.js";
  *
  * Fitur:
  * - Membuka satu dialog reusable dari enam kartu kategori
- * - Menampilkan gambar utama, judul, caption, dan posisi
+ * - Menampilkan gambar utama dan thumbnail berdasarkan kategori
  * - Mengganti gambar melalui thumbnail, previous, dan next
  * - Mendukung ArrowLeft, ArrowRight, Home, End, dan Escape
  * - Menutup melalui tombol close dan backdrop
@@ -21,17 +21,7 @@ export function initializePortfolioGallery() {
 
   const dialogTitle = document.querySelector("[data-portfolio-dialog-title]");
 
-  const dialogDescription = document.querySelector(
-    "[data-portfolio-dialog-description]",
-  );
-
   const mainImage = document.querySelector("[data-portfolio-main-image]");
-
-  const imageTitle = document.querySelector("[data-portfolio-image-title]");
-
-  const imageCaption = document.querySelector("[data-portfolio-image-caption]");
-
-  const position = document.querySelector("[data-portfolio-position]");
 
   const thumbnailsContainer = document.querySelector(
     "[data-portfolio-thumbnails]",
@@ -47,11 +37,7 @@ export function initializePortfolioGallery() {
     categoryTriggers.length === 0 ||
     !dialog ||
     !dialogTitle ||
-    !dialogDescription ||
     !mainImage ||
-    !imageTitle ||
-    !imageCaption ||
-    !position ||
     !thumbnailsContainer ||
     !previousButton ||
     !nextButton ||
@@ -129,21 +115,9 @@ export function initializePortfolioGallery() {
     currentIndex = normalizeIndex(index);
 
     const image = currentCollection.images[currentIndex];
-    const totalImages = currentCollection.images.length;
-    const humanPosition = currentIndex + 1;
 
     mainImage.src = image.src;
     mainImage.alt = image.alt;
-
-    imageTitle.textContent = image.title;
-    imageCaption.textContent = image.caption;
-
-    position.textContent = `${humanPosition} / ${totalImages}`;
-
-    position.setAttribute(
-      "aria-label",
-      `Foto ${humanPosition} dari ${totalImages}`,
-    );
 
     updateActiveThumbnail(options);
   }
@@ -223,8 +197,6 @@ export function initializePortfolioGallery() {
     lastTrigger = trigger;
 
     dialogTitle.textContent = collection.name;
-
-    dialogDescription.textContent = collection.description;
 
     renderThumbnails(collection);
     showImage(0);
