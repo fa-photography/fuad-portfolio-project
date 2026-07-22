@@ -6,7 +6,7 @@ import { getPortfolioCollection } from "../data/portfolio-collections.js";
  * Fitur:
  * - Membuka satu dialog reusable dari enam kartu kategori
  * - Menampilkan gambar utama dan thumbnail berdasarkan kategori
- * - Mengganti gambar melalui thumbnail, previous, dan next
+ * - Mengganti gambar melalui thumbnail, keyboard, dan swipe
  * - Mendukung ArrowLeft, ArrowRight, Home, End, dan Escape
  * - Menutup melalui tombol close dan backdrop
  * - Mengunci body scroll
@@ -23,13 +23,11 @@ export function initializePortfolioGallery() {
 
   const mainImage = document.querySelector("[data-portfolio-main-image]");
 
+  const stage = document.querySelector("[data-portfolio-stage]");
+
   const thumbnailsContainer = document.querySelector(
     "[data-portfolio-thumbnails]",
   );
-
-  const previousButton = document.querySelector("[data-portfolio-previous]");
-
-  const nextButton = document.querySelector("[data-portfolio-next]");
 
   const closeButton = document.querySelector("[data-portfolio-dialog-close]");
 
@@ -38,9 +36,8 @@ export function initializePortfolioGallery() {
     !dialog ||
     !dialogTitle ||
     !mainImage ||
+    !stage ||
     !thumbnailsContainer ||
-    !previousButton ||
-    !nextButton ||
     !closeButton
   ) {
     return;
@@ -53,6 +50,12 @@ export function initializePortfolioGallery() {
   let currentCollection = null;
   let currentIndex = 0;
   let lastTrigger = null;
+
+  const SWIPE_THRESHOLD = 48;
+
+  let activePointerId = null;
+  let swipeStartX = 0;
+  let swipeStartY = 0;
 
   /**
    * Menjaga index tetap berada di dalam jumlah foto.
@@ -69,6 +72,15 @@ export function initializePortfolioGallery() {
     }
 
     return (index + totalImages) % totalImages;
+  }
+
+  /**
+   * Membersihkan state gesture swipe.
+   */
+  function resetSwipeState() {
+    activePointerId = null;
+    swipeStartX = 0;
+    swipeStartY = 0;
   }
 
   /**
@@ -201,10 +213,6 @@ export function initializePortfolioGallery() {
     renderThumbnails(collection);
     showImage(0);
 
-    previousButton.disabled = collection.images.length <= 1;
-
-    nextButton.disabled = collection.images.length <= 1;
-
     document.body.classList.add("portfolio-dialog-open");
 
     if (typeof dialog.showModal === "function") {
@@ -245,24 +253,6 @@ export function initializePortfolioGallery() {
   });
 
   /**
-   * Navigasi previous.
-   */
-  previousButton.addEventListener("click", () => {
-    showImage(currentIndex - 1, {
-      scrollIntoView: true,
-    });
-  });
-
-  /**
-   * Navigasi next.
-   */
-  nextButton.addEventListener("click", () => {
-    showImage(currentIndex + 1, {
-      scrollIntoView: true,
-    });
-  });
-
-  /**
    * Mengganti gambar melalui thumbnail.
    *
    * Event delegation digunakan agar listener tidak perlu
@@ -287,6 +277,59 @@ export function initializePortfolioGallery() {
 
     showImage(index);
   });
+
+  /**
+   * Menyimpan posisi awal gesture pada perangkat sentuh.
+   *
+   * Mouse sengaja diabaikan karena navigasi desktop
+   * sudah tersedia melalui thumbnail dan keyboard.
+   */
+  stage.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" || !currentCollection) {
+      return;
+    }
+
+    activePointerId = event.pointerId;
+    swipeStartX = event.clientX;
+    swipeStartY = event.clientY;
+
+    stage.setPointerCapture?.(event.pointerId);
+  });
+
+  /**
+   * Mengganti foto ketika gesture horizontal
+   * melewati batas minimum swipe.
+   */
+  stage.addEventListener("pointerup", (event) => {
+    if (event.pointerId !== activePointerId || !currentCollection) {
+      return;
+    }
+
+    const deltaX = event.clientX - swipeStartX;
+    const deltaY = event.clientY - swipeStartY;
+
+    resetSwipeState();
+
+    const isHorizontalGesture = Math.abs(deltaX) > Math.abs(deltaY);
+
+    const passesThreshold = Math.abs(deltaX) >= SWIPE_THRESHOLD;
+
+    if (!isHorizontalGesture || !passesThreshold) {
+      return;
+    }
+
+    const nextIndex = deltaX < 0 ? currentIndex + 1 : currentIndex - 1;
+
+    showImage(nextIndex, {
+      scrollIntoView: true,
+    });
+  });
+
+  /**
+   * Membersihkan gesture ketika browser membatalkan pointer,
+   * misalnya saat pengguna melakukan scroll vertikal.
+   */
+  stage.addEventListener("pointercancel", resetSwipeState);
 
   /**
    * Menutup melalui tombol close.
