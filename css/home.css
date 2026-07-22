@@ -263,32 +263,12 @@
 }
 
 /* ========================================
-   7. Photography Services
-======================================== */
-
-.services {
-  overflow: hidden;
-  background-color: var(--color-warm-white);
-}
-
-.services .section-heading {
-  margin-bottom: clamp(2.75rem, 5vw, 4.5rem);
-}
-
-.services__note {
-  max-width: 680px;
-  margin: var(--space-8) 0 0;
-  color: var(--color-dark-60);
-  font-size: var(--font-size-small);
-}
-
-/* ========================================
    8. Selected Works / Gallery
 ======================================== */
 
 .gallery {
   overflow: hidden;
-  background-color: var(--color-soft-black);
+  background-color: var(--color-warm-white);
 }
 
 .gallery .section-heading {

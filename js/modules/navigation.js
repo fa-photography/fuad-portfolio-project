@@ -157,8 +157,7 @@ export function initializeNavigation() {
     ["about", "about"],
     ["portfolio", "portfolio"],
     ["experience", "experience"],
-    ["services", "services"],
-    ["gallery", "portfolio"],
+    ["gallery", "gallery"],
     ["contact", "contact"],
   ]);
 
