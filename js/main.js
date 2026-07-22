@@ -1,5 +1,6 @@
 import { initializeNavigation } from "./modules/navigation.js";
 import { initializeLightbox } from "./modules/lightbox.js";
+import { initializePortfolioGallery } from "./modules/portfolio-gallery.js";
 import { initializeScrollReveal } from "./modules/scroll-reveal.js";
 
 /**
@@ -23,10 +24,11 @@ function updateCurrentYear() {
 function initializeProject() {
   initializeNavigation();
   initializeLightbox();
+  initializePortfolioGallery();
   initializeScrollReveal();
   updateCurrentYear();
 
-  console.info("Fuad Portfolio Project initialized successfully.");
+  // console.info("Fuad Portfolio Project initialized successfully.");
 }
 
 /**
