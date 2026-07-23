@@ -1321,6 +1321,38 @@ body.lightbox-open {
   color: var(--color-warm-gold);
 }
 
+/* Desktop Selected Works Lightbox Refinement */
+
+@media (min-width: 901px) {
+  .lightbox {
+    width: fit-content;
+    height: fit-content;
+    max-width: calc(100vw - 3rem);
+    max-height: 92dvh;
+  }
+
+  .lightbox__content,
+  .lightbox__figure {
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .lightbox__image {
+    display: block;
+    width: auto;
+    height: auto;
+    min-height: clamp(380px, 68dvh, 560px);
+    max-width: calc(100vw - 3rem);
+    max-height: calc(92dvh - 4.75rem);
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .lightbox__caption {
+    width: 100%;
+  }
+}
+
 @media (max-width: 640px) {
   .lightbox {
     width: calc(100vw - 1rem);
