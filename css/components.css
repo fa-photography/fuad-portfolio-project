@@ -456,7 +456,7 @@
   text-transform: uppercase;
 }
 
-/* Hover hanya diterapkan pada perangkat yang mendukung cursor. */
+/* Interaksi visual tambahan pada perangkat yang mendukung hover. */
 
 @media (hover: hover) {
   .brand:hover {
@@ -627,7 +627,7 @@
 }
 
 /* ========================================
-   21. Selected Works Gallery
+   19. Selected Works Gallery
 ======================================== */
 
 .gallery-grid {
@@ -731,7 +731,7 @@
 }
 
 /* ========================================
-   22. Gallery Responsive
+   20. Gallery Responsive
 ======================================== */
 
 @media (max-width: 900px) {
@@ -773,7 +773,7 @@
 }
 
 /* ========================================
-   23. Portfolio Category Dialog
+   21. Portfolio Category Dialog
 ======================================== */
 
 body.portfolio-dialog-open {
@@ -981,18 +981,20 @@ body.portfolio-dialog-open {
 
 @media (min-width: 901px) {
   .portfolio-dialog {
-    width: calc(100vw - 2rem);
-    height: calc(100dvh - 2rem);
-    max-height: none;
+    width: fit-content;
+    max-width: calc(100vw - 3rem);
+    height: fit-content;
+    max-height: 92dvh;
   }
 
   .portfolio-dialog__shell {
-    height: 100%;
-    max-height: none;
+    width: fit-content;
+    max-width: 100%;
+    height: auto;
+    max-height: 92dvh;
   }
 
   .portfolio-dialog__header {
-    flex: 0 0 auto;
     padding: 0.9rem 4.75rem 0.85rem 1.15rem;
   }
 
@@ -1001,18 +1003,19 @@ body.portfolio-dialog-open {
   }
 
   .portfolio-dialog__body {
-    flex: 1 1 auto;
-    min-height: 0;
-    grid-template-columns: minmax(0, 1fr) 180px;
+    width: fit-content;
+    max-width: 100%;
+    grid-template-columns: auto 180px;
     overflow: hidden;
   }
 
   .portfolio-dialog__figure {
-    display: grid;
+    width: fit-content;
+    min-width: 0;
     min-height: 0;
-    height: 100%;
+    height: auto;
     padding: 0.75rem;
-    align-items: stretch;
+    align-items: center;
     justify-items: center;
     overflow: hidden;
   }
@@ -1020,7 +1023,7 @@ body.portfolio-dialog-open {
   .portfolio-dialog__stage {
     width: auto;
     max-width: 100%;
-    height: 100%;
+    height: min(64dvh, 600px);
     max-height: none;
     margin-inline: auto;
     aspect-ratio: 8 / 5;
@@ -1034,8 +1037,8 @@ body.portfolio-dialog-open {
   }
 
   .portfolio-dialog__thumbnails {
-    height: 100%;
-    max-height: none;
+    height: auto;
+    max-height: min(64dvh, 600px);
     align-items: center;
     overflow-y: auto;
     padding: 0.75rem;
@@ -1047,24 +1050,51 @@ body.portfolio-dialog-open {
 }
 
 @media (max-width: 900px) {
+  .portfolio-dialog {
+    width: min(calc(100vw - 2rem), 680px);
+    height: fit-content;
+    max-height: calc(100dvh - 2rem);
+  }
+
+  .portfolio-dialog__shell {
+    max-height: calc(100dvh - 2rem);
+  }
+
   .portfolio-dialog__header {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
+    flex: 0 0 auto;
   }
 
   .portfolio-dialog__body {
     display: block;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .portfolio-dialog__figure {
+    padding: 0.75rem;
     border-right: 0;
   }
 
+  .portfolio-dialog__stage {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    max-height: none;
+    margin-inline: 0;
+    aspect-ratio: 8 / 5;
+  }
+
   .portfolio-dialog__image {
-    height: min(55vh, 560px);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
   }
 
   .portfolio-dialog__thumbnails {
+    padding: 0.75rem;
     border-top: var(--border-light);
   }
 
@@ -1072,9 +1102,53 @@ body.portfolio-dialog-open {
     grid-template-columns: none;
     grid-auto-flow: column;
     grid-auto-columns: minmax(96px, 130px);
+    gap: 0.55rem;
     overflow-x: auto;
     padding-bottom: var(--space-2);
     overscroll-behavior-inline: contain;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) and (max-height: 700px) {
+  .portfolio-dialog {
+    width: min(calc(100vw - 2rem), 560px);
+    max-height: calc(100dvh - 1rem);
+  }
+
+  .portfolio-dialog__shell {
+    max-height: calc(100dvh - 1rem);
+  }
+
+  .portfolio-dialog__header {
+    padding: 0.75rem 4.25rem 0.7rem 1rem;
+  }
+
+  .portfolio-dialog__header h2 {
+    font-size: clamp(2.15rem, 5vw, 2.8rem);
+  }
+
+  .portfolio-dialog__close-form {
+    top: 0.65rem;
+    right: 0.65rem;
+  }
+
+  .portfolio-dialog__close {
+    width: 40px;
+    height: 40px;
+  }
+
+  .portfolio-dialog__figure {
+    padding: 0.5rem;
+  }
+
+  .portfolio-dialog__thumbnails {
+    padding: 0.5rem;
+  }
+
+  .portfolio-dialog__thumbnail-grid {
+    grid-auto-columns: 82px;
+    gap: 0.5rem;
+    padding-bottom: 0.25rem;
   }
 }
 
@@ -1106,8 +1180,18 @@ body.portfolio-dialog-open {
     height: 40px;
   }
 
+  .portfolio-dialog__stage {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 8 / 5;
+  }
+
   .portfolio-dialog__image {
-    height: min(48vh, 430px);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
   }
 
   .portfolio-dialog__thumbnails {
@@ -1120,7 +1204,7 @@ body.portfolio-dialog-open {
 }
 
 /* ========================================
-   24. Selected Works Lightbox
+   22. Selected Works Lightbox
 ======================================== */
 
 body.lightbox-open {
@@ -1258,7 +1342,7 @@ body.lightbox-open {
 }
 
 /* ========================================
-   25. Site Footer
+   23. Site Footer
 ======================================== */
 
 .site-footer {
@@ -1296,6 +1380,7 @@ body.lightbox-open {
 .footer__brand:focus-visible {
   color: var(--color-warm-gold);
 }
+
 .footer__identity p {
   max-width: 480px;
   margin: 0;
@@ -1367,7 +1452,7 @@ body.lightbox-open {
 }
 
 /* ========================================
-   26. Footer Responsive
+   24. Footer Responsive
 ======================================== */
 
 @media (max-width: 900px) {
